@@ -2,6 +2,9 @@
 
 import { useState, useEffect } from "react";
 import { ShoppingBag, User, Heart, Menu, X, Instagram, Facebook, Twitter } from "lucide-react";
+import Link from "next/link";
+
+import { categoryTree, siteNav } from "@/lib/storefront-data";
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false);
@@ -15,8 +18,6 @@ export default function Navbar() {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    const collectionItems = ["Kurti Collection", "Night Wears", "Our Brand Prrayasha"];
-
     return (
         <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
 
@@ -28,7 +29,7 @@ export default function Navbar() {
                         <a href="#" aria-label="Twitter" className="header-icon-link"><Twitter size={16} /></a>
                     </div>
 
-                    <a href="/" className="logo-container" style={{ width: 'auto', height: 'auto', display: 'flex', flexDirection: 'column' }}>
+                    <Link href="/" className="logo-container" style={{ width: 'auto', height: 'auto', display: 'flex', flexDirection: 'column' }}>
                         <span style={{
                             fontFamily: "'Aclonica Pro', 'Aclonica', sans-serif",
                             fontSize: '19px',
@@ -40,12 +41,12 @@ export default function Navbar() {
                         }}>
                             <span className="logo-highlight">P</span>RRAYASHA <span className="logo-highlight">C</span>OLLECTIONS
                         </span>
-                    </a>
+                    </Link>
 
                     <div className="logo-action-icons">
-                        <a href="#" aria-label="Account" className="header-icon-link"><User size={16} /></a>
-                        <a href="#" aria-label="Wishlist" className="header-icon-link"><Heart size={16} /></a>
-                        <a href="#" aria-label="Cart" className="header-icon-link"><ShoppingBag size={16} /></a>
+                        <Link href="/my-account" aria-label="Account" className="header-icon-link"><User size={16} /></Link>
+                        <Link href="/wishlist" aria-label="Wishlist" className="header-icon-link"><Heart size={16} /></Link>
+                        <Link href="/cart" aria-label="Cart" className="header-icon-link"><ShoppingBag size={16} /></Link>
                     </div>
                 </div>
             </div>
@@ -61,24 +62,29 @@ export default function Navbar() {
                 </button>
 
                 <div className={`nav-links ${mobileMenuOpen ? "open" : ""}`}>
-                    <a href="#" className="nav-link">HOME</a>
-                    <a href="#" className="nav-link">ABOUT</a>
-
-                    <div className="nav-item nav-dropdown">
+                    {siteNav.map((item) =>
+                        item.children ? (
+                    <div key={item.href} className="nav-item nav-dropdown">
                         <button className="nav-link nav-link-button" type="button">
-                            ALL COLLECTIONS
+                            {item.label.toUpperCase()}
                         </button>
                         <div className="dropdown-menu">
-                            {collectionItems.map((item) => (
-                                <a key={item} href="#" className="dropdown-link">
-                                    {item}
-                                </a>
+                            <Link href={item.href} className="dropdown-link">
+                                Shop All
+                            </Link>
+                            {categoryTree.map((category) => (
+                                <Link key={category.href} href={category.href} className="dropdown-link">
+                                    {category.label}
+                                </Link>
                             ))}
                         </div>
                     </div>
-
-                    <a href="#" className="nav-link">OUR BRAND</a>
-                    <a href="#" className="nav-link">CONTACT</a>
+                        ) : (
+                            <Link key={item.href} href={item.href} className="nav-link">
+                                {item.label.toUpperCase()}
+                            </Link>
+                        ),
+                    )}
                 </div>
             </div>
         </nav>

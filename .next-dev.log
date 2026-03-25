@@ -1,0 +1,11 @@
+
+> prrayasha-web@0.1.0 dev
+> next dev
+
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.3:3000
+
+✓ Starting...
+Creating turbopack project { dir: 'C:\\Deepan Projects\\prrayasha', testMode: true }
+✓ Ready in 2.2s

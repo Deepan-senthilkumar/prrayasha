@@ -1,5 +1,7 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { Inter, Outfit, Playfair_Display, Great_Vibes } from "next/font/google";
+import Footer from "@/components/Footer";
+import Navbar from "@/components/Navbar";
 import "./globals.css";
 
 const outfit = Outfit({
@@ -36,14 +38,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
-        <link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
-        <link href="https://fonts.cdnfonts.com/css/utility-sans" rel="stylesheet" />
-      </head>
       <body className={`${outfit.variable} ${inter.variable} ${playfair.variable} ${greatVibes.variable} antialiased text-white font-sans`}>
+        <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

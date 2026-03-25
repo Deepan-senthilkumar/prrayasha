@@ -2,6 +2,7 @@
 
 import { Facebook, Instagram, Twitter, Phone, Mail } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
     const currentYear = new Date().getFullYear();
@@ -129,9 +130,12 @@ export default function Footer() {
                     <p style={{ fontSize: "12px", fontWeight: "500", color: "rgba(255,255,255,0.8)", letterSpacing: "0.02em" }}>
                         &copy; Prrayasha Collections {currentYear}. All rights reserved.
                     </p>
-                    <p style={{ fontSize: "11px", fontWeight: "500", color: "rgba(255,255,255,0.7)", letterSpacing: "0.04em", textTransform: "uppercase" }}>
-                        Developed & Maintained by Ocean Softwares
-                    </p>
+                    <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap", justifyContent: "flex-end", fontSize: "11px", color: "rgba(255,255,255,0.75)" }}>
+                        <Link href="/privacy-policy">Privacy</Link>
+                        <Link href="/shipping-policy">Shipping</Link>
+                        <Link href="/exchange-policy">Exchange</Link>
+                        <Link href="/terms-conditions">Terms</Link>
+                    </div>
                 </div>
             </div>
         </footer>
